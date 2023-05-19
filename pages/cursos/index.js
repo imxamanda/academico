@@ -1,43 +1,55 @@
 import Navbar from '@/components/Navbar'
 import Link from 'next/link';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import { MdAdd } from 'react-icons/md';
+import { BsFillTrash3Fill } from 'react-icons/bs';
 
 const index = () => {
+
+    const [cursos, setCursos] = useState([])
     
+    useEffect(()=>{
+        setCursos(getAll())
+    }, [])
+
+function getAll(){
+    return JSON.parse(window.localStorage.getItem('cursos')) || []
+}
+
+function excluir(id){
+    const itens = getAll()
+    itens.splice(id, 1)
+    window.localStorage.setItem('cursos', JSON.stringify(itens))
+    setCursos(itens)
+}
+
     return (
         <Navbar titulo='Cursos'>
-            <Link href="" className='mb-2 btn btn-dark'> Novo <MdAdd />
+            <Link href="cursos/form" className='mb-2 btn btn-dark'> Novo <MdAdd />
 
             </Link>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Excluir</th>
+                        <th>Nome</th>
+                        <th>Duração</th>
+                        <th>Modalidade</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                {cursos.map((item, i) => (
+                    <tr key={i}>
+                        <td>{item.nome}</td>
+                        <td>{item.duracao}</td>
+                        <td>{item.modalidade}</td>
+                        <td>
+                            <BsFillTrash3Fill onClick={()=>excluir(i)} className='text-danger'/>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan={2}>Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                 ))}
+                  
                 </tbody>
             </Table>
         </Navbar>

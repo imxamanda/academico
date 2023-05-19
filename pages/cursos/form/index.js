@@ -8,8 +8,10 @@ const index = () => {
     const { register, handleSubmit } = useForm()
 
     function salvar(dados){
-        console.log(dados);
-/*        set(ref(db, 'cursos', dados))*/
+        const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+        cursos.push(dados)
+        window.localStorage.setItem('cursos', JSON.stringify(cursos))
+
     }
 
     return (
@@ -30,7 +32,7 @@ const index = () => {
                     <Form.Control type="text" {...register('modalidade')}/>
                 </Form.Group>
 
-                <Button variant="dark" onClick={handleSubmit(salvar)}>
+                <Button href="cursos" variant="dark" onClick={handleSubmit(salvar)}>
                     Salvar
                 </Button>
             </Form>
