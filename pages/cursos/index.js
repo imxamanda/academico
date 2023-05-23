@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import { MdAdd } from 'react-icons/md';
 import { BsFillTrash3Fill } from 'react-icons/bs';
+import { MdOpenInNew } from 'react-icons/md';
 
 const index = () => {
 
@@ -18,10 +19,12 @@ function getAll(){
 }
 
 function excluir(id){
+    if (confirm('Deseja realmente excluir o registro?')) {
     const itens = getAll()
     itens.splice(id, 1)
     window.localStorage.setItem('cursos', JSON.stringify(itens))
     setCursos(itens)
+    }
 }
 
     return (
@@ -32,10 +35,11 @@ function excluir(id){
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Excluir</th>
                         <th>Nome</th>
                         <th>Duração</th>
                         <th>Modalidade</th>
+                        <th>Excluir</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +50,14 @@ function excluir(id){
                         <td>{item.modalidade}</td>
                         <td>
                             <BsFillTrash3Fill onClick={()=>excluir(i)} className='text-danger'/>
+                            
                         </td>
+                        <td>
+                            <Link href={'/cursos/' + i}>
+                            <MdOpenInNew title="Alterar" className='text-dark'/>
+                            </Link>
+                        </td>
+                        
                     </tr>
                  ))}
                   
