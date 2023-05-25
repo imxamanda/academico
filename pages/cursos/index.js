@@ -53,7 +53,7 @@ function excluir(id){
                             
                         </td>
                         <td>
-                            <Link href={'/cursos/' + i}>
+                            <Link href={'/cursos/form/' + i}>
                             <MdOpenInNew title="Alterar" className='text-dark'/>
                             </Link>
                         </td>
