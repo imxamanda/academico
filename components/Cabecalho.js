@@ -11,7 +11,7 @@ const Cabecalho = () => {
           <Navbar.Brand href="#home">Acadêmico</Navbar.Brand>
           <Nav className="me-auto">
               <NavLink href="#action/3.1">Cursos</NavLink>
-              <NavLink href="#action/3.2">Discilinas</NavLink>
+              <NavLink href="#action/3.2">Disciplinas</NavLink>
               <NavLink href="#action/3.3">Alunos</NavLink>
               <NavLink href="#action/3.4">Professores</NavLink>
               <NavLink href="#action/3.4">Turmas</NavLink>

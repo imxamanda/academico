@@ -1,6 +1,15 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+//import { getAnalytics } from "firebase/analytics";
+
+let app
+try{
+  app = getAdd()
+} catch (error){
+
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,6 +26,11 @@ const firebaseConfig = {
   measurementId: "process.env.FIREBASE_MEASUREMENT_ID"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+ // Initialize Firebase
+ app = initializeApp(firebaseConfig);
+//const analytics = getAnalytics(app);
+}
+
+const db = getDatabase(app)
+
+export { db }
