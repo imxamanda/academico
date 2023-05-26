@@ -6,6 +6,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import { BiArrowBack } from 'react-icons/bi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const index = () => {
 
