@@ -5,12 +5,15 @@ import {  useForm } from 'react-hook-form'
 import { BsCheckLg } from 'react-icons/bs';
 import { BiArrowBack } from 'react-icons/bi';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const index = () => {
 
+    const { push } = useRouter()
     const { register, handleSubmit } = useForm()
 
     function salvar(dados){
+        axios.post('api/disciplinas', dados)
      }
 
     return (
